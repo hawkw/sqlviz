@@ -1,4 +1,4 @@
-sqlgraph
+sqlviz
 ========
 [![Build Status](https://travis-ci.org/hawkw/sqlgraph.svg?branch=master)](https://travis-ci.org/hawkw/sqlgraph)
 
