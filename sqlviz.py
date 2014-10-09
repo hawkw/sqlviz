@@ -12,17 +12,26 @@ class Schema:
         self.source = source
 
     def n_tables(self):
-        """ Returns the number of tables defined in the schema"""
+        """
+        Returns the number of tables defined in the schema
+        """
         pass
 
     def n_keys(self):
-        """Returns the number of keys defined in the schema"""
+        """
+        Returns the number of keys defined in the schema
+        """
         pass
 
     def n_datatypes(self):
-        """Returns the number of each data type in the schema."""
+        """
+        Returns the number of each data type in the schema.
+        """
         pass
 
     def lengths(self):
-        """Returns a dictionary mapping each data type in the schema to a list of the lengths of those data types in the schema."""
+        """
+        Returns a dictionary mapping each data type in the schema
+        to a list of the lengths of those data types.
+        """
         pass
