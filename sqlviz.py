@@ -1,4 +1,7 @@
 #! usr/bin/env python3
+from docopt import docopt
+from matplotlib import pyplot
+
 
 class Schema:
     """
