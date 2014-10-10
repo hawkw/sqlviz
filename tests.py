@@ -2,6 +2,7 @@
 
 
 import unittest
+import sqlviz
 
 # Tests will go here...eventually
 
