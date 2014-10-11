@@ -21,7 +21,7 @@ class Schema:
         """
         Returns the number of tables defined in the schema
         """
-        return len(Schema.table_def.findall(source))
+        return len(Schema.table_def.findall(self.source))
 
     def n_keys(self):
         """
