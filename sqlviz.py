@@ -1,12 +1,15 @@
 #! usr/bin/env python3
 from docopt import docopt
 from matplotlib import pyplot
+import re
 
 
 class Schema:
     """
     Wraps the SQL source code for a schema and provides methods to get information about that schema.
     """
+    
+    table_def = re.compile(r"CREATE TABLE|create table")
 
     def __init__(self, source):
         """
@@ -18,7 +21,7 @@ class Schema:
         """
         Returns the number of tables defined in the schema
         """
-        pass #TODO: not yet implementend
+        return len(table_def.findall(source))
 
     def n_keys(self):
         """
