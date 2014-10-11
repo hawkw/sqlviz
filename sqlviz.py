@@ -1,6 +1,6 @@
 #! usr/bin/env python3
 from docopt import docopt
-from matplotlib import pyplot
+#from matplotlib import pyplot
 import re
 
 
@@ -8,14 +8,16 @@ class Schema:
     """
     Wraps the SQL source code for a schema and provides methods to get information about that schema.
     """
-    
+
     table_def = re.compile(r"CREATE TABLE|create table")
+    primary_key = re.compile(r"PRIMARY KEY|primary key")
+    foreign_key = re.compile(r"FOREIGN KEY|foreign key")
 
     def __init__(self, source):
         """
         Creates a new instance of Schema for the specified source code string.
         """
-        self.source = source  
+        self.source = source
 
     def n_tables(self):
         """
@@ -27,7 +29,8 @@ class Schema:
         """
         Returns the number of keys defined in the schema
         """
-        pass #TODO: not yet implementend
+        return {"PRIMARY KEY": len(Schema.primary_key.findall(self.source)),
+                "FOREIGN KEY": len(Schema.foreign_key.findall(self.source))}
 
     def n_datatypes(self):
         """
