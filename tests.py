@@ -25,7 +25,7 @@ class InventorySchemaSpec (unittest.TestCase):
                         "The Inventory schema should contain 1 table.")
                         
     def test_n_keys(self):
-        self.assertEqual(self.schema.n_keys(),  {"PRIMARY KEY": 1, "FOREIGN KEY:" 0},
+        self.assertEqual(self.schema.n_keys(),  {"PRIMARY KEY": 1, "FOREIGN KEY": 0},
                         "The Inventory schema should contain 1 primary key and 0 foreign keys.")
                         
     def test_n_datatypes(self):
