@@ -1,8 +1,23 @@
 #! usr/bin/env python3
 from docopt import docopt
-#from matplotlib import pyplot
+from matplotlib import pyplot
 import re
 
+"""SQLViz
+
+Usage:
+    sqlviz [-hkdlpo DIR]
+    sqlviz no-graph [-hkdlo DIR]
+
+Options:
+    -h --help       Display this help file
+    -k --keys       Graph the number of foreign keys vs primary keys
+    -d --datatypes  Graph the distribution of datatypes
+    -l --lengths    Graph the distribution of lengths for each data type
+    -p --print      Print text to the console as well as creating graphs
+    -o DIR          Output graphs to the specified directory
+
+"""
 
 class Schema:
     """
@@ -49,3 +64,6 @@ class Schema:
         to a list of the lengths of those data types.
         """
         pass #TODO: not yet implementend
+    
+if __name__ == "__main__":
+    opts = docopt(__doc__, help=True, version="0.1")
