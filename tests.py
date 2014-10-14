@@ -29,7 +29,7 @@ class InventorySchemaSpec (unittest.TestCase):
                         "The Inventory schema should contain 1 primary key and 0 foreign keys.")
 
     def test_n_datatypes(self):
-        self.assertEqual(self.schema.n_datatypes(), {"INT": 2, "VARCHAR": 1, "DECIMAL": 1},
+        self.assertEqual(self.schema.n_datatypes(), {"INT": 2, "DECIMAL": 1, "VARCHAR": 1},
                         "The Inventory schema should contain two INTs, one VARCHAR, and one DECIMAL")
 
     def test_lengths(self):

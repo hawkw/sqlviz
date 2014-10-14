@@ -12,6 +12,9 @@ class Schema:
     table_def = re.compile(r"CREATE TABLE|create table")
     primary_key = re.compile(r"PRIMARY KEY|primary key")
     foreign_key = re.compile(r"FOREIGN KEY|foreign key")
+    varchar = re.compile(r"VARCHAR|varchar \((?P<n>\n+)\)")
+    decimal = re.compile(r"DECIMAL|decimal \((?P<p>\n+),(?P<d>\n+)\)")
+    integer = re.compile(r"INT|int")
 
     def __init__(self, source):
         """
@@ -36,7 +39,9 @@ class Schema:
         """
         Returns the number of each data type in the schema.
         """
-        pass #TODO: not yet implementend
+        return {"INT": len(Schema.integer.findall(self.source)),
+                "DECIMAL": len(Schema.decimal.findall(self.source)),
+                "VARCHAR": len(Schema.varchar.findall(self.source))}
 
     def lengths(self):
         """
