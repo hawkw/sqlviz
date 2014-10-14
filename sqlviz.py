@@ -6,8 +6,7 @@ import re
 """SQLViz
 
 Usage:
-    sqlviz [-hkdlpo DIR]
-    sqlviz no-graph [-hkdlo DIR]
+    sqlviz [-hnkdlpo DIR] FILE
 
 Options:
     -h --help       Display this help file
@@ -15,6 +14,7 @@ Options:
     -d --datatypes  Graph the distribution of datatypes
     -l --lengths    Graph the distribution of lengths for each data type
     -p --print      Print text to the console as well as creating graphs
+    -n --no-display Don't display the generated graphs.
     -o DIR          Output graphs to the specified directory
 
 """
