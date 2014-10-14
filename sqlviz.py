@@ -27,8 +27,9 @@ class Schema:
     table_def = re.compile(r"CREATE TABLE|create table")
     primary_key = re.compile(r"PRIMARY KEY|primary key")
     foreign_key = re.compile(r"FOREIGN KEY|foreign key")
-    varchar = re.compile(r"VARCHAR|varchar \((?P<n>\n+)\)")
-    decimal = re.compile(r"DECIMAL|decimal \((?P<p>\n+),(?P<d>\n+)\)")
+    varchar = re.compile(r"(?:VARCHAR|varchar)\s*\((\d+)\)")
+    decimal = re.compile(r"(?:DECIMAL|decimal)\s*\((\d+,\d+)\)")
+    decimal_extract = re.compile(r"(?P<p>\d+),(?P<d>\d+)")
     integer = re.compile(r"INT|int")
 
     def __init__(self, source):
@@ -63,7 +64,9 @@ class Schema:
         Returns a dictionary mapping each data type in the schema
         to a list of the lengths of those data types.
         """
-        pass #TODO: not yet implementend
-    
+        return {"VARCHAR": [int(v) for v in Schema.varchar.findall(self.source)],
+                "DECIMAL": [(int(d.group("p")), int(d.group("d"))) for d in map(Schema.decimal_extract.search,Schema.decimal.findall(self.source))]
+        }
+
 if __name__ == "__main__":
     opts = docopt(__doc__, help=True, version="0.1")
