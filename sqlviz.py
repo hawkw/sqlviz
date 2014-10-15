@@ -75,3 +75,32 @@ class Schema:
 
 if __name__ == "__main__":
     opts = docopt(__doc__, help=True, version="0.1")
+
+    with open(opts["FILE"], 'r') as f:
+        source = f.read()
+
+    schema = schema(source)
+
+    # Begin plotting
+    fignum = 0
+
+    if opts["--keys"]: # pie chart of keys
+        fignum = fignum + 1
+        figure(fignum, figsize=(6,6))
+        ax = axes([0.1, 0.1, 0.8, 0.8])
+
+        keys = schema.n_keys()
+        total_keys = keys["PRIMARY KEY"] + keys["FOREIGN KEY"]
+
+        fracs = [ # determine fractions of primary/foreign
+            (keys["PRIMARY_KEY"]/total_keys)*100, (keys["FOREIGN KEY"]/total_keys)*100,
+            ]
+
+        pie(fracs, labels = ["primary", "foreign"])
+        title("Key Composition")
+
+        if not opts["--no-display"]:
+            show()
+        if opts["-o"]:
+            savefig((opts["-o"] + "/keys.pdf"))
+
