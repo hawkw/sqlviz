@@ -13,7 +13,6 @@ Options:
     -p --print      Print text to the console as well as creating graphs
     -n --no-display Don't display the generated graphs.
     -o DIR          Output graphs to the specified directory
-
 """
 
 from docopt import docopt
