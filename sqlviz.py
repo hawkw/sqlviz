@@ -30,7 +30,7 @@ class Schema:
     varchar = re.compile(r"(?:VARCHAR|varchar)\s*\((\d+)\)")
     decimal = re.compile(r"(?:DECIMAL|decimal)\s*\((\d+,\d+)\)")
     decimal_extract = re.compile(r"(?P<p>\d+),(?P<d>\d+)")
-    integer = re.compile(r"INT|int")
+    integer = re.compile(r"INT|int|INTEGER|integer")
 
     def __init__(self, source):
         """
