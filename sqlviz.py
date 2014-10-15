@@ -104,3 +104,27 @@ if __name__ == "__main__":
         if opts["--output"]:
             pyplot.savefig((opts["--output"] + "/keys.pdf"))
 
+    if opts["--datatypes"]: # pie chart of datatypes
+        pyplot.fignum = fignum + 1
+        pyplot.figure(fignum, figsize=(6,6))
+        pyplot.ax = pyplot.axes([0.1, 0.1, 0.8, 0.8])
+
+        datatypes = schema.n_datatypes()
+        total_datatypes = (datatypes["INT"] + datatypes["VARCHAR"] + datatypes["DECIMAL"] + 
+                datatypes["NUMERIC"] + datatypes["TEXT"])
+
+        fracs = [ # determine fractions of datatypes
+            (datatypes["INT"]/total_datatypes)*100, (datatypes["VARCHAR"]/total_datatypes)*100,
+            (datatypes["DECIMAL"]/total_datatypes)*100, (datatypes["NUMERIC"]/total_datatypes)*100,
+            (datatypes["TEXT"]/total_datatypes)*100
+            ]
+
+        pyplot.pie(fracs, labels = ["int", "varchar", "decimal", "numeric", "text"], autopct='%1.1f%%')
+        pyplot.title("Datatype Composition")
+
+        if not opts["--no-display"]:
+            pyplot.show()
+        if opts["--output"]:
+            pyplot.savefig((opts["--output"] + "/datatypes.pdf"))
+
+
