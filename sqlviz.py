@@ -29,8 +29,10 @@ class Schema:
     foreign_key = re.compile(r"FOREIGN KEY|foreign key")
     varchar = re.compile(r"(?:VARCHAR|varchar)\s*\((\d+)\)")
     decimal = re.compile(r"(?:DECIMAL|decimal)\s*\((\d+,\d+)\)")
-    decimal_extract = re.compile(r"(?P<p>\d+),(?P<d>\d+)")
-    integer = re.compile(r"INT|int|INTEGER|integer")
+    decimal_extract = re.compile(r"(?P<p>\d+),\s*(?P<d>\d+)")
+    integer = re.compile(r"(INT|int|INTEGER|integer)(\s|,)")
+    text = re.compile(r"(TEXT|text)(\s|,)")
+    numeric = re.compile(r"(?:NUMERIC|numeric)\s*\((\d+,\s*\d+)\)")
 
     def __init__(self, source):
         """
@@ -57,7 +59,9 @@ class Schema:
         """
         return {"INT": len(Schema.integer.findall(self.source)),
                 "DECIMAL": len(Schema.decimal.findall(self.source)),
-                "VARCHAR": len(Schema.varchar.findall(self.source))}
+                "NUMERIC": len(Schema.numeric.findall(self.source)),
+                "VARCHAR": len(Schema.varchar.findall(self.source)),
+                "TEXT": len(Schema.text.findall(self.source))}
 
     def lengths(self):
         """
@@ -65,7 +69,8 @@ class Schema:
         to a list of the lengths of those data types.
         """
         return {"VARCHAR": [int(v) for v in Schema.varchar.findall(self.source)],
-                "DECIMAL": [(int(d.group("p")), int(d.group("d"))) for d in map(Schema.decimal_extract.search,Schema.decimal.findall(self.source))]
+                "DECIMAL": [(int(d.group("p")), int(d.group("d"))) for d in map(Schema.decimal_extract.search,Schema.decimal.findall(self.source))],
+                "NUMERIC": [(int(d.group("p")), int(d.group("d"))) for d in map(Schema.decimal_extract.search,Schema.numeric.findall(self.source))]
         }
 
 if __name__ == "__main__":
