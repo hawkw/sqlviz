@@ -84,6 +84,7 @@ if __name__ == "__main__":
     # Begin plotting
     fignum = 0
 
+    # pie chart of keys
     if opts["--keys"]: # pie chart of keys
         pyplot.fignum = fignum + 1
         pyplot.figure(fignum, figsize=(6,6))
@@ -104,6 +105,7 @@ if __name__ == "__main__":
         if opts["--output"]:
             pyplot.savefig((opts["--output"] + "/keys.pdf"))
 
+    # pie chart of datatypes
     if opts["--datatypes"]: # pie chart of datatypes
         pyplot.fignum = fignum + 1
         pyplot.figure(fignum, figsize=(6,6))
