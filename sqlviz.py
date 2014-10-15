@@ -3,16 +3,16 @@
 """SQLViz
 
 Usage:
-    sqlviz [-hnkdlpo DIR] FILE
+    sqlviz [-hnkdlpo DIR] <file>
 
 Options:
-    -h --help       Display this help file
-    -k --keys       Graph the number of foreign keys vs primary keys
-    -d --datatypes  Graph the distribution of datatypes
-    -l --lengths    Graph the distribution of lengths for each data type
-    -p --print      Print text to the console as well as creating graphs
-    -n --no-display Don't display the generated graphs.
-    -o DIR          Output graphs to the specified directory
+    -h --help              Display this help file
+    -k --keys              Graph the number of foreign keys vs primary keys
+    -d --datatypes         Graph the distribution of datatypes
+    -l --lengths           Graph the distribution of lengths for each data type
+    -p --print             Print text to the console as well as creating graphs
+    -n --no-display        Don't display the generated graphs.
+    -o DIR --output=DIR    Output graphs to the specified directory
 """
 
 from docopt import docopt
@@ -76,10 +76,10 @@ class Schema:
 if __name__ == "__main__":
     opts = docopt(__doc__, help=True, version="0.1")
 
-    with open(opts["FILE"], 'r') as f:
+    with open(opts["<file>"], 'r') as f:
         source = f.read()
 
-    schema = schema(source)
+    schema = Schema(source)
 
     # Begin plotting
     fignum = 0
@@ -101,6 +101,6 @@ if __name__ == "__main__":
 
         if not opts["--no-display"]:
             show()
-        if opts["-o"]:
-            savefig((opts["-o"] + "/keys.pdf"))
+        if opts["--output"]:
+            savefig((opts["--output"] + "/keys.pdf"))
 
