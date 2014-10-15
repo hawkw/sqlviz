@@ -1,2 +1,6 @@
 matplotlib
 docopt
+six
+python-dateutil
+pyparsing
+numpy
