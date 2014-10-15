@@ -1,7 +1,4 @@
 #! usr/bin/env python3
-from docopt import docopt
-from matplotlib import pyplot
-import re
 
 """SQLViz
 
@@ -18,6 +15,10 @@ Options:
     -o DIR          Output graphs to the specified directory
 
 """
+
+from docopt import docopt
+from matplotlib import pyplot
+import re
 
 class Schema:
     """
