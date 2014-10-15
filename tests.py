@@ -52,7 +52,7 @@ class WritersSchemaSpec (unittest.TestCase):
                         "The Writers schema should contain 3 primary keys and 5 foreign keys.")
 
     def test_n_datatypes(self):
-        self.assertEqual(self.schema.n_datatypes(), {"INT": 7, "DECIMAL": 0, "NUMERIC": 1, "VARCHAR": 10,  "TEXT": 1},
+        self.assertEqual(self.schema.n_datatypes(), {"INT": 7, "DECIMAL": 0, "NUMERIC": 1, "VARCHAR": 10,  "TEXT": 2},
                         "The Writers schema should contain 7 INTs, 10 VARCHARs, 1 NUMERIC, and 1 TEXT")
 
     def test_lengths(self):
