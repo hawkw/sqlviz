@@ -96,7 +96,7 @@ if __name__ == "__main__":
             (keys["PRIMARY KEY"]/total_keys)*100, (keys["FOREIGN KEY"]/total_keys)*100,
             ]
 
-        pyplot.pie(fracs, labels = ["primary", "foreign"])
+        pyplot.pie(fracs, labels = ["primary", "foreign"], autopct='%1.1f%%')
         pyplot.title("Key Composition")
 
         if not opts["--no-display"]:
