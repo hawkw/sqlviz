@@ -85,22 +85,22 @@ if __name__ == "__main__":
     fignum = 0
 
     if opts["--keys"]: # pie chart of keys
-        fignum = fignum + 1
-        figure(fignum, figsize=(6,6))
-        ax = axes([0.1, 0.1, 0.8, 0.8])
+        pyplot.fignum = fignum + 1
+        pyplot.figure(fignum, figsize=(6,6))
+        pyplot.ax = pyplot.axes([0.1, 0.1, 0.8, 0.8])
 
         keys = schema.n_keys()
         total_keys = keys["PRIMARY KEY"] + keys["FOREIGN KEY"]
 
         fracs = [ # determine fractions of primary/foreign
-            (keys["PRIMARY_KEY"]/total_keys)*100, (keys["FOREIGN KEY"]/total_keys)*100,
+            (keys["PRIMARY KEY"]/total_keys)*100, (keys["FOREIGN KEY"]/total_keys)*100,
             ]
 
-        pie(fracs, labels = ["primary", "foreign"])
-        title("Key Composition")
+        pyplot.pie(fracs, labels = ["primary", "foreign"])
+        pyplot.title("Key Composition")
 
         if not opts["--no-display"]:
-            show()
+            pyplot.show()
         if opts["--output"]:
-            savefig((opts["--output"] + "/keys.pdf"))
+            pyplot.savefig((opts["--output"] + "/keys.pdf"))
 
