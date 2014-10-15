@@ -112,16 +112,17 @@ if __name__ == "__main__":
         pyplot.ax = pyplot.axes([0.1, 0.1, 0.8, 0.8])
 
         datatypes = schema.n_datatypes()
-        total_datatypes = (datatypes["INT"] + datatypes["VARCHAR"] + datatypes["DECIMAL"] + 
-                datatypes["NUMERIC"] + datatypes["TEXT"])
+        n_d = {}
+        for d in datatypes: # remove zero values
+            if datatypes[d] != 0:
+                n_d[d] = datatypes[d]
+        datatypes = n_d
+        total_datatypes = sum(datatypes.values())
 
-        fracs = [ # determine fractions of datatypes
-            (datatypes["INT"]/total_datatypes)*100, (datatypes["VARCHAR"]/total_datatypes)*100,
-            (datatypes["DECIMAL"]/total_datatypes)*100, (datatypes["NUMERIC"]/total_datatypes)*100,
-            (datatypes["TEXT"]/total_datatypes)*100
-            ]
+        fracs = [ (v/total_datatypes) * 100 for v in datatypes.values() ]
+   
 
-        pyplot.pie(fracs, labels = ["int", "varchar", "decimal", "numeric", "text"], autopct='%1.1f%%')
+        pyplot.pie(fracs, labels = datatypes.keys(), autopct='%1.1f%%')
         pyplot.title("Datatype Composition")
 
         if not opts["--no-display"]:
